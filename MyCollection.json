@@ -19,7 +19,7 @@
 							"});\r",
 							"var jasonData = pm.response.json();\r",
 							"pm.test(\"Wanted to Check Name Value\", () => {\r",
-							"    pm.expect(jasonData.job).to.eql(pm.iterationData.get(\"job\"));\r",
+							"    pm.expect(jasonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
 							"\r",
 							"});\r",
 							"\r",
