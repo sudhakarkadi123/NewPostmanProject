@@ -8,6 +8,74 @@
 	},
 	"item": [
 		{
+			"name": "reqres.in/api/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", () => {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"var jasonData = pm.response.json();\r",
+							"pm.test(\"Wanted to Check Name Value\", () => {\r",
+							"    pm.expect(jasonData.job).to.eql(pm.iterationData.get(\"job\"));\r",
+							"\r",
+							"});\r",
+							"\r",
+							"var response = pm.response.json();\r",
+							"pm.environment.set(\"IdValue\",response.code);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"{{name}}\",\r\n    \"job\":\"{{job}}\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_url}}/api/users",
+					"host": [
+						"{{Base_url}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "New Request",
 			"event": [
 				{
@@ -65,82 +133,6 @@
 							"key": "page",
 							"value": "2"
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "reqres.in/api/users",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", () => {\r",
-							"    pm.response.to.have.status(201);\r",
-							"});\r",
-							"var jasonData = pm.response.json();\r",
-							"pm.test(\"Wanted to Check Name Value\", () => {\r",
-							"    pm.expect(jasonData.name).to.eql(\"SudhakarHYTR\");\r",
-							"\r",
-							"});\r",
-							"\r",
-							"var response = pm.response.json();\r",
-							"pm.environment.set(\"IdValue\",response.code);\r",
-							"\r",
-							"\r",
-							"\r",
-							"\r",
-							"\r",
-							"\r",
-							"\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "x-api-key",
-						"value": "reqres-free-v1",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"SudhakarHYTR\",\r\n    \"job\": \"QA EngineerCIREW\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{Base_url}}/api/users",
-					"host": [
-						"{{Base_url}}"
-					],
-					"path": [
-						"api",
-						"users"
 					]
 				}
 			},
