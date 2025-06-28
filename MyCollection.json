@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "ebe48cd0-26c0-45f8-bef3-1685dc86003b",
+		"name": "My Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9583023",
+		"_collection_link": "https://planetary-water-642809.postman.co/workspace/NewWorkSpaceAPI~5495be97-01be-40b1-85a7-d786876d1d41/collection/9583023-ebe48cd0-26c0-45f8-bef3-1685dc86003b?action=share&source=collection_link&creator=9583023"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Code Test\", () => {\r",
+							"    //pm.response.to.have.status(200);\r",
+							"    pm.expect(pm.response.code).to.eql(200)\r",
+							"});\r",
+							"\r",
+							"pm.test('Status COde Test1', () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201])\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response Time Test\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"    \r",
+							"});\r",
+							"pm.test(\"Content Type\", () => {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");\r",
+							"});\r",
+							"pm.test('Header type', ()=> {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    \r",
+							"\r",
+							"});\r",
+							"pm.test('Response Time',()=> {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});\r",
+							"\r",
+							"pm.test('Cookies Test',()=> {\r",
+							"    pm.expect(pm.cookies.has(\"language\")).to.be.false;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_url}}/api/users?page=2",
+					"host": [
+						"{{Base_url}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reqres.in/api/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", () => {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"var jasonData = pm.response.json();\r",
+							"pm.test(\"Wanted to Check Name Value\", () => {\r",
+							"    pm.expect(jasonData.name).to.eql(\"SudhakarHYTR\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"var response = pm.response.json();\r",
+							"pm.environment.set(\"IdValue\",response.code);\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"SudhakarHYTR\",\r\n    \"job\": \"QA EngineerCIREW\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_url}}/api/users",
+					"host": [
+						"{{Base_url}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Code Test\", () => {\r",
+							"    //pm.response.to.have.status(204);\r",
+							"    pm.expect(pm.response.code).to.eql(204)\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_url}}/api/users/{{IdValue}}",
+					"host": [
+						"{{Base_url}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{IdValue}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
