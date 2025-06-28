@@ -43,16 +43,22 @@
 			],
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "reqres-free-v1",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
-				"header": [
-					{
-						"key": "x-api-key",
-						"value": "reqres-free-v1",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"name\":\"{{name}}\",\r\n    \"job\":\"{{job}}\"\r\n\r\n}",
